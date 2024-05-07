@@ -35,13 +35,13 @@ export class GuiModel {
               "required": true,
             },
             {
-                "id": "group",
-                "type": "autocomplete",
-                "name": "Group",
-                "url": "/group",
-                "form": "GroupForm",
-                "width": 2
-                },
+              "id": "group",
+              "type": "autocomplete",
+              "name": "Group",
+              "url": "/group",
+              "form": "GroupForm",
+              "width": 2,
+            },
             {
               "id": "location",
               "type": "autocomplete",
@@ -159,6 +159,54 @@ export class GuiModel {
             },
           ],
         },
+        {
+          "id": "ActivityForm",
+          "title": "Activity",
+          "url": "/activity",
+          "formFieldList": [
+            {
+              "id": "name",
+              "type": "text",
+              "name": "ActivityName",
+              "width": 2,
+              "required": true,
+            },
+            {
+              "id": "date",
+              "type": "date",
+              "name": "ActivityDate",
+              "width": 2,
+              "required": true,
+            },
+            {
+              "id": "comments",
+              "type": "text",
+              "name": "ActivityComments",
+              "width": 2,
+              "required": true,
+            },
+            {
+              "id": "location",
+              "type": "autocomplete",
+              "name": "Location",
+              "url": "/Location",
+              "form": "LocationForm",
+              "width": 2,
+            },
+            {
+              "type": "deleteButton",
+              "name": "Delete",
+            },
+            {
+              "type": "cancelButton",
+              "name": "Cancel",
+            },
+            {
+              "type": "okButton",
+              "name": "Ok",
+            },
+          ],
+        },
       ],
       "pageList": [
         {
@@ -186,6 +234,13 @@ export class GuiModel {
               "color": "wisteria",
               "page": "groupspage",
             },
+            {
+              "type": "button",
+              "name": "Activities",
+              "icon": "fa-circle",
+              "color": "wisteria",
+              "page": "activiespage",
+            },
           ],
         },
         {
@@ -209,12 +264,51 @@ export class GuiModel {
               "color": "blue",
               "search": true,
               "url": "/friend",
+              "page": "friendManagement",
+            },
+          ],
+        },
+
+        {
+          "id": "friendManagement",
+          "elementList": [
+            {
+              "type": "backbutton",
+            },
+            {
+              "type": "button",
+              "name": "EditFriend",
+              "icon": "fa-user",
+              "color": "green",
               "form": {
                 "form": "FriendForm",
               },
             },
+
+            {
+              "type": "newButton",
+              "name": "AddActivity",
+              "icon": "fa-home",
+              "color": "green",
+              "width": 2,
+              "form": {
+                "form": "AddActivityForm",
+              },
+            },
+
+            {
+              "type": "list",
+              "icon": "fa-home",
+              "color": "blue",
+              "search": true,
+              "url": "/friend/:friendKey/activity",
+              "form": {
+                "form": "AddActivityForm",
+              },
+            },
           ],
         },
+
         {
           "id": "locationspage",
           "elementList": [
@@ -237,9 +331,8 @@ export class GuiModel {
               "color": "blue",
               "search": true,
               "url": "/location",
-              "form": {
-                "form": "LocationForm",
-              },
+              "page":"LocationActivityPage"
+
             },
           ],
         },
@@ -259,17 +352,91 @@ export class GuiModel {
               },
             },
             {
-                "type": "list",
-                "icon": "fa-weixin",
-                "color": "wisteria",
-                "search": true,
-                "url": "/group",
-                "form": {
-                "form": "GroupForm"
-                }
-                },
+              "type": "list",
+              "icon": "fa-weixin",
+              "color": "wisteria",
+              "search": true,
+              "url": "/group",
+              "form": {
+                "form": "GroupForm",
+              },
+            },
           ],
         },
+        {
+          "id": "activiespage",
+          "elementList": [
+            {
+              "type": "backbutton",
+            },
+            {
+              "type": "newButton",
+              "name": "NewActivity",
+              "icon": "fa-circle",
+              "color": "green",
+              "page": "ActivityForm",
+            },
+            {
+              "type": "list",
+              "icon": "fa-circle",
+              "color": "wisteria",
+              "search": true,
+              "url": "/activity",
+              "page": "activityFriendList",
+            },
+          ],
+        },
+        {
+          "id": "activityFriendList",
+          "elementList": [
+            {
+              "type": "backbutton",
+            },
+            {
+              "type": "button",
+              "name": "EditActivity",
+              "icon": "fa-user",
+              "color": "green",
+              "form": {
+                "form": "ActivityForm",
+              },
+            },
+            {
+              "type": "list",
+              "icon": "fa-home",
+              "color": "blue",
+              "search": true,
+              "url": "/activity/:activityKey/friend",
+              "page": "friendManagement "
+            },
+          ],
+        },
+
+        {
+            "id": "LocationActivityPage",
+            "elementList": [
+              {
+                "type": "backbutton",
+              },
+              {
+                "type": "button",
+                "name": "EditLocation",
+                "icon": "fa-user",
+                "color": "green",
+                "form": {
+                  "form": "LocationForm",
+                },
+              },
+              {
+                "type": "list",
+                "icon": "fa-home",
+                "color": "blue",
+                "search": true,
+                "url": "/location/:locationKey/activity",
+                "page": "activiespage"
+              },
+            ],
+          },
       ],
     },
   };

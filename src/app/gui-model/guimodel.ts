@@ -91,6 +91,13 @@ export class GuiModel {
               "required": true,
             },
             {
+              "id": "comment",
+              "type": "text",
+              "name": "LocationComment",
+              "width": 2,
+              "required": false,
+            },
+            {
               "type": "deleteButton",
               "name": "Delete",
             },
@@ -142,6 +149,20 @@ export class GuiModel {
               "id": "name",
               "type": "text",
               "name": "GroupName",
+              "width": 2,
+              "required": true,
+            },
+            {
+              "id": "date",
+              "type": "date",
+              "name": "GroupCreationDate",
+              "width": 2,
+              "required": true,
+            },
+            {
+              "id": "comments",
+              "type": "text",
+              "name": "GroupComments",
               "width": 2,
               "required": true,
             },
@@ -331,8 +352,7 @@ export class GuiModel {
               "color": "blue",
               "search": true,
               "url": "/location",
-              "page":"LocationActivityPage"
-
+              "page": "LocationActivityPage",
             },
           ],
         },
@@ -407,36 +427,36 @@ export class GuiModel {
               "color": "blue",
               "search": true,
               "url": "/activity/:activityKey/friend",
-              "page": "friendManagement "
+              "page": "friendManagement ",
             },
           ],
         },
 
         {
-            "id": "LocationActivityPage",
-            "elementList": [
-              {
-                "type": "backbutton",
+          "id": "LocationActivityPage",
+          "elementList": [
+            {
+              "type": "backbutton",
+            },
+            {
+              "type": "button",
+              "name": "EditLocation",
+              "icon": "fa-user",
+              "color": "green",
+              "form": {
+                "form": "LocationForm",
               },
-              {
-                "type": "button",
-                "name": "EditLocation",
-                "icon": "fa-user",
-                "color": "green",
-                "form": {
-                  "form": "LocationForm",
-                },
-              },
-              {
-                "type": "list",
-                "icon": "fa-home",
-                "color": "blue",
-                "search": true,
-                "url": "/location/:locationKey/activity",
-                "page": "activiespage"
-              },
-            ],
-          },
+            },
+            {
+              "type": "list",
+              "icon": "fa-home",
+              "color": "blue",
+              "search": true,
+              "url": "/location/:locationKey/activity",
+              "page": "activiespage",
+            },
+          ],
+        },
       ],
     },
   };

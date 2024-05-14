@@ -394,7 +394,9 @@ export class GuiModel {
               "name": "NewActivity",
               "icon": "fa-circle",
               "color": "green",
-              "form": "ActivityForm",
+              "form": {
+                "form": "ActivityForm",
+              },
             },
             {
               "type": "list",
